@@ -13,7 +13,7 @@ export default function Menu({ active, routeData, setMenuVisible }) {
     navigate("/" + route.id);
     setTimeout(() => {
       setMenuVisible(false);
-    }, 500);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -47,10 +47,10 @@ export default function Menu({ active, routeData, setMenuVisible }) {
         >
           <p
             style={{
-              display:
+              margin:
                 othersHidden && hoveredItem !== item.id
-                  ? "none"
-                  : "inline-block",
+                  ? 0
+                  : 20,
               opacity: hoveredItem === item.id && !othersHidden ? 1 : 0,
               transform:
                 hoveredItem === item.id ? "translateY(0)" : "translateY(-100%)",

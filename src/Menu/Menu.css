@@ -11,7 +11,7 @@
 
 .menu-item {
     height: 100vh;
-    transition: all 0.5s;
+    transition: all 0.7s ease-in-out;
     background-position: center;
     background-size: cover;
 }
@@ -21,8 +21,8 @@
     color: white;
     font-size: 4rem;
     font-weight: bold;
-    transition: transform 0.5s ease-out 0.3s, opacity 0.5s ease-out 0.3s, ;
-    width: 10px;
+    transition: transform 0.5s ease-out 0.3s, opacity 0.5s ease-out 0.3s, margin 0.5s ease-out 0.3s, ;
+    width: 0px;
     margin: 2rem;
     font-family: 'Roboto', sans-serif;
 }
