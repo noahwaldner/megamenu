@@ -29,29 +29,34 @@ export default function Menu({ active, routeData, setMenuVisible }) {
   }, [setOthersHidden, setVisibility]);
 
   return (
-    <ul
+    <div
       className={`menu-container ${visibility && "visible"}`}
-      onMouseLeave={() => { !othersHidden && setHoveredItem(null) }}
+      onMouseLeave={() => {
+        !othersHidden && setHoveredItem(null);
+      }}
     >
       {routeData.map((item) => (
-        <li
+        <div
           key={item.id}
           onClick={() => handleRedirect(item)}
           onMouseEnter={() => {
             setHoveredItem(item.id);
           }}
-          className={`menu-item ${hoveredItem === item.id ? "zoomed" : othersHidden && "collapsed"}`}
+          className={`menu-item ${
+            hoveredItem === item.id ? "zoomed" : othersHidden && "collapsed"
+          }`}
           style={{
             backgroundImage: `url(${item.image})`,
           }}
         >
-          <p
-            className={`${ othersHidden ? "hidden" : ""}`}
-          >
-            {item.name}
-          </p>
-        </li>
+          <div className="menu-item_title">
+            {item.name.split("").map((letter, index) => (
+              <span key={index}>{letter}</span>
+            ))}
+          </div>
+          <p className={`menu-item_description`}>{item.description}</p>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }
