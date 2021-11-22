@@ -6,7 +6,7 @@ export default function Home() {
     const navigate = useNavigate();
     useEffect(() => {
         navigate(`/3`);
-    }, [])
+    }, [navigate]);
     return (
         <div>
             Home
