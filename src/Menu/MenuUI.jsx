@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Menu.css";
 
 export default function Menu({ active, routeData, setMenuVisible }) {
-  const activePage = window.location.pathname.split("/")[1];
-  console.log(activePage);
+  const activePage = parseInt(window.location.pathname.split("/")[1]);
   const [hoveredItem, setHoveredItem] = useState(activePage);
   const [othersHidden, setOthersHidden] = useState(activePage);
   const navigate = useNavigate();
@@ -39,7 +38,7 @@ export default function Menu({ active, routeData, setMenuVisible }) {
           style={{
             backgroundImage: `url(${item.image})`,
             flexGrow:
-              hoveredItem === item.id || (activePage == item.id && othersHidden)
+              hoveredItem === item.id || (activePage === item.id && othersHidden)
                 ? 3
                 : othersHidden
                 ? 0
