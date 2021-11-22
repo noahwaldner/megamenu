@@ -4,6 +4,7 @@ import "./Menu.css";
 
 export default function Menu({ active, routeData, setMenuVisible }) {
   const activePage = parseInt(window.location.pathname.split("/")[1]);
+  const [visibility, setVisibility] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(activePage);
   const [othersHidden, setOthersHidden] = useState(activePage);
   const navigate = useNavigate();
@@ -12,18 +13,26 @@ export default function Menu({ active, routeData, setMenuVisible }) {
     setOthersHidden(true);
     navigate("/" + route.id);
     setTimeout(() => {
+      setVisibility(false)
+    }, 800);
+    setTimeout(() => {
       setMenuVisible(false);
-    }, 1000);
+    }, 1300);
   };
 
   useEffect(() => {
+    console.log("effect");
+    setVisibility(true);
     setTimeout(() => {
       setOthersHidden(false);
-    }, 500);
-  }, [setOthersHidden]);
+    }, 200);
+  }, [setOthersHidden, setVisibility]);
 
   return (
-    <ul className="menu-container">
+    <ul
+      className={`menu-container ${visibility && "visible"}`}
+      onMouseLeave={() => { !othersHidden && setHoveredItem(null) }}
+    >
       {routeData.map((item) => (
         <li
           key={item.id}
@@ -31,30 +40,13 @@ export default function Menu({ active, routeData, setMenuVisible }) {
           onMouseEnter={() => {
             setHoveredItem(item.id);
           }}
-          onMouseLeave={() => {
-            setHoveredItem((current) => (current === item.id ? null : current));
-          }}
-          className="menu-item"
+          className={`menu-item ${hoveredItem === item.id ? "zoomed" : othersHidden && "collapsed"}`}
           style={{
             backgroundImage: `url(${item.image})`,
-            flexGrow:
-              hoveredItem === item.id || (activePage === item.id && othersHidden)
-                ? 3
-                : othersHidden
-                ? 0
-                : 1,
           }}
         >
           <p
-            style={{
-              margin:
-                othersHidden && hoveredItem !== item.id
-                  ? 0
-                  : 20,
-              opacity: hoveredItem === item.id && !othersHidden ? 1 : 0,
-              transform:
-                hoveredItem === item.id ? "translateY(0)" : "translateY(-100%)",
-            }}
+            className={`${ othersHidden ? "hidden" : ""}`}
           >
             {item.name}
           </p>

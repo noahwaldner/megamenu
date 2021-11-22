@@ -11,7 +11,7 @@ export default function MenuContainer({ active, routeData }) {
                 !menuVisible ?
                     <button className="menu-toggle" onClick={() => { setMenuVisible(true) }} >Open</button>
                     :
-                    <Menu setMenuVisible={setMenuVisible} active={active} routeData={routeData} />
+                    <Menu setMenuVisible={setMenuVisible} visible={menuVisible} active={active} routeData={routeData} />
             }
         </>
     )
