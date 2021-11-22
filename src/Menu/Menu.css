@@ -24,6 +24,7 @@
     transition: transform 0.5s ease-out 0.3s, opacity 0.5s ease-out 0.3s, ;
     width: 10px;
     margin: 2rem;
+    font-family: 'Roboto', sans-serif;
 }
 
 .menu-toggle {
