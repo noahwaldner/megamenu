@@ -40,7 +40,7 @@ export default function Menu({ active, routeData, setMenuVisible }) {
           key={item.id}
           onClick={() => handleRedirect(item)}
           onMouseEnter={() => {
-            setHoveredItem(item.id);
+            !othersHidden && setHoveredItem(item.id);
           }}
           className={`menu-item ${
             hoveredItem === item.id ? "zoomed" : othersHidden && "collapsed"
