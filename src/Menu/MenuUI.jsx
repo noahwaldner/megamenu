@@ -9,9 +9,10 @@ export default function Menu({ active, routeData, setMenuVisible }) {
   const [othersHidden, setOthersHidden] = useState(activePage);
   const navigate = useNavigate();
 
-  const handleRedirect = (route) => {
+  const handleRedirect = (item) => {
+    setHoveredItem(item.id)
     setOthersHidden(true);
-    navigate("/" + route.id);
+    navigate("/" + item.id);
     setTimeout(() => {
       setVisibility(false)
     }, 800);
